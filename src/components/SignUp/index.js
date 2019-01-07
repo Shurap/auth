@@ -7,7 +7,7 @@ import * as ROUTES from '../../constants/routes';
 const SignUpPage = () => (
   <div>
     <h1>SignUp</h1>
-    <SignUpForm/>}
+    <SignUpForm/>
   </div>
 );
 
@@ -16,7 +16,7 @@ const INITIAL_STATE = {
   email: '',
   passwordOne: '',
   passwordTwo: '',
-  error: null,
+  error: null
 };
 
 class SignUpFormBase extends Component {
@@ -39,13 +39,10 @@ class SignUpFormBase extends Component {
       .catch((error) => {
         this.setState({error});
       });
-
-    //event.preventDefault();
   };
 
   onChange = (event) => {
     this.setState({[event.target.name]: event.target.value});
-    //console.log(this.state.username);
   };
 
   render() {
