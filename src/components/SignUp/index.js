@@ -20,9 +20,6 @@ const INITIAL_STATE = {
 };
 
 class SignUpFormBase extends Component {
-  //constructor(props) {
-  //  super(props);
-  //}
 
   state = {...INITIAL_STATE};
 
@@ -62,7 +59,6 @@ class SignUpFormBase extends Component {
       username === '';
 
     return (
-
       <form onSubmit={this.onSubmit}>
         <input
           name="username"
@@ -104,7 +100,7 @@ class SignUpFormBase extends Component {
 
 const SignUpForm = compose(withRouter, withFirebase)(SignUpFormBase);
 
-  withFirebase(SignUpFormBase);
+withFirebase(SignUpFormBase);
 
 const SignUpLink = () => (
   <p>

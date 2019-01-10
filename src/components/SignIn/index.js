@@ -7,7 +7,7 @@ import * as ROUTES from '../../constants/routes';
 
 const SignInPage = () => (
   <div>
-    <h1>SignIp</h1>
+    <h1>Sign In</h1>
     <SignInForm/>
     <SignUpLink/>
   </div>
@@ -55,7 +55,6 @@ class SignInFormBase extends Component {
       email === '';
 
     return (
-
       <form onSubmit={this.onSubmit}>
         <input
           name="email"
