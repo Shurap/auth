@@ -3,9 +3,10 @@ import {Link} from 'react-router-dom';
 import SignOutButton from '../SignOut'
 import * as ROUTES from '../../constants/routes';
 import {AuthUserContext} from '../Session'
+import styles from './Navigation.module.css';
 
 const Navigation = () => (
-  <div>
+  <div className={styles.navigationBar}>
     <AuthUserContext.Consumer>
     {(authUser) => authUser ? (<NavigationAuth/>) : (<NavigationNonAuth/>)}
     </AuthUserContext.Consumer>
@@ -13,7 +14,7 @@ const Navigation = () => (
 );
 
 const NavigationAuth = () => (
-  <ul>
+  <ul className={styles.ulBar}>
     <li>
       <Link to={ROUTES.LANDING}>Landing</Link>
     </li>
@@ -27,7 +28,7 @@ const NavigationAuth = () => (
 );
 
 const NavigationNonAuth = () => (
-  <ul>
+  <ul className={styles.ulBar}>
     <li>
       <Link to={ROUTES.LANDING}>Landing</Link>
     </li>

@@ -3,10 +3,11 @@ import {Link, withRouter} from 'react-router-dom';
 import {withFirebase} from "../Firebase";
 import {compose} from 'recompose';
 import * as ROUTES from '../../constants/routes';
+import styles from './SignUp.module.css';
 
 const SignUpPage = () => (
   <div>
-    <h1>SignUp</h1>
+    <h1 className={styles.text}>SignUp</h1>
     <SignUpForm/>
   </div>
 );
@@ -74,6 +75,7 @@ class SignUpFormBase extends Component {
           onChange={this.onChange}
           type="text"
           placeholder="Full Name"
+          autoComplete="on"
         />
         <input
           name="email"
@@ -81,6 +83,7 @@ class SignUpFormBase extends Component {
           onChange={this.onChange}
           type="text"
           placeholder="Email Address"
+          autoComplete="on"
         />
         <input
           name="passwordOne"
@@ -88,7 +91,7 @@ class SignUpFormBase extends Component {
           onChange={this.onChange}
           type="password"
           placeholder="Password"
-          autoComplete="current-password"
+          autoComplete="on"
         />
         <input
           name="passwordTwo"
@@ -96,7 +99,7 @@ class SignUpFormBase extends Component {
           onChange={this.onChange}
           type="password"
           placeholder="Confirm Password"
-          autoComplete="current-password"
+          autoComplete="on"
         />
         <button disabled={isInvalid} type="submit">Sign Up</button>
 
