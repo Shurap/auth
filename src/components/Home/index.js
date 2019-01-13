@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {withAuthorization} from '../Session'
+import styles from './Home.module.css';
 
 class HomePage extends Component {
 
@@ -9,7 +10,10 @@ class HomePage extends Component {
   };
 
   componentDidMount() {
-    this.setState({ loading: true });
+
+    console.log(this.props.firebase.user);
+
+    this.setState({loading: true});
 
     this.props.firebase.users().on('value', snapshot => {
       const usersObject = snapshot.val();
@@ -32,8 +36,11 @@ class HomePage extends Component {
 
   render() {
     return (
-      <div>
-        <h1>Home page</h1>
+      <div className={styles.window}>
+        <h2>Welcome to Home page</h2>
+        <h2>(for authorized users only)</h2>
+        <br/>
+        <h3>All people registered on this page:</h3>
         {this.state.loading && <h2>Loading...</h2>}
         <UserList users={this.state.users}/>
       </div>
@@ -41,24 +48,21 @@ class HomePage extends Component {
   }
 }
 
-const UserList = ({ users }) => (
+const UserList = ({users}) => (
   <ul>
     {users.map(user => (
       <li key={user.uid}>
         <span>
-          <strong>ID:</strong> {user.uid}
-        </span>
-        <span>
-          <strong>E-Mail:</strong> {user.email}
-        </span>
-        <span>
           <strong>Username:</strong> {user.username}
         </span>
+        {/*<span>*/}
+          {/*<strong>E-Mail:</strong> {user.email}*/}
+        {/*</span>*/}
       </li>
     ))}
   </ul>
 );
 
-const condition = authUser => !!authUser;
+const condition = (authUser) => !!authUser;
 
 export default withAuthorization(condition)(HomePage);

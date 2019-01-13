@@ -8,34 +8,42 @@ import styles from './Navigation.module.css';
 const Navigation = () => (
   <div className={styles.navigationBar}>
     <AuthUserContext.Consumer>
-    {(authUser) => authUser ? (<NavigationAuth/>) : (<NavigationNonAuth/>)}
+      {(authUser) => authUser ? (<NavigationAuth/>) : (<NavigationNonAuth/>)}
     </AuthUserContext.Consumer>
   </div>
 );
 
 const NavigationAuth = () => (
-  <ul className={styles.ulBar}>
-    <li>
-      <Link to={ROUTES.LANDING}>Landing</Link>
-    </li>
-    <li>
-      <Link to={ROUTES.HOME}>Home</Link>
-    </li>
-    <li>
-      <SignOutButton/>
-    </li>
-  </ul>
+  <div className={styles.container}>
+    <ul className={styles.siteNavigation}>
+      <li>
+        <Link to={ROUTES.LANDING}>Start page</Link>
+      </li>
+      <li>
+        <Link to={ROUTES.HOME}>Home</Link>
+      </li>
+    </ul>
+    <ul className={styles.userNavigation}>
+      <li>
+        <SignOutButton/>
+      </li>
+    </ul>
+  </div>
 );
 
 const NavigationNonAuth = () => (
-  <ul className={styles.ulBar}>
-    <li>
-      <Link to={ROUTES.LANDING}>Landing</Link>
-    </li>
-    <li>
-      <Link to={ROUTES.SIGN_IN}>Sign In</Link>
-    </li>
-  </ul>
+  <div className={styles.container}>
+    <ul className={styles.siteNavigation}>
+      <li>
+        <Link to={ROUTES.LANDING}>Start page</Link>
+      </li>
+      <li>
+        <Link to={ROUTES.SIGN_IN}>Sign In</Link>
+      </li>
+      <li>
+        <Link to={ROUTES.SIGN_UP}>Sign Up</Link>
+      </li>
+    </ul>
+  </div>
 );
-
 export default Navigation;

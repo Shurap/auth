@@ -4,10 +4,11 @@ import {withFirebase} from "../Firebase";
 import {compose} from 'recompose';
 import {SignUpLink} from '../SignUp'
 import * as ROUTES from '../../constants/routes';
+import styles from './SignIn.module.css'
 
 const SignInPage = () => (
-  <div>
-    <h1>Sign In</h1>
+  <div className={styles.window}>
+    <h2>Sign In</h2>
     <SignInForm/>
     <SignUpLink/>
   </div>
@@ -55,7 +56,7 @@ class SignInFormBase extends Component {
       email === '';
 
     return (
-      <form onSubmit={this.onSubmit}>
+      <form className={styles.form} onSubmit={this.onSubmit}>
         <input
           name="email"
           value={email}
