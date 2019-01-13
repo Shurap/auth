@@ -11,7 +11,6 @@ class HomePage extends Component {
 
   componentDidMount() {
 
-    console.log(this.props.firebase.user);
 
     this.setState({loading: true});
 
@@ -23,11 +22,16 @@ class HomePage extends Component {
         uid: key,
       }));
 
+      console.log('userList', usersList);
+
       this.setState({
         users: usersList,
         loading: false,
       });
     });
+
+    console.log(this.props.authUser.email);
+    console.log(this.props.authUser.uid);
   }
 
   componentWillUnmount() {
