@@ -2,18 +2,6 @@ import app from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/database';
 
-<<<<<<< HEAD
-// const config = {
-//   apiKey: "AIzaSyAfX2DUD-F-aduyKLoWg6qPA8Tv2qCaF-4",
-//   authDomain: "auth-b3296.firebaseapp.com",
-//   databaseURL: "https://auth-b3296.firebaseio.com",
-//   projectId: "auth-b3296",
-//   storageBucket: "auth-b3296.appspot.com",
-//   messagingSenderId: "371152742967"
-// };
-=======
->>>>>>> d0df69bfed26de7c16c36244e9dd53d32e3f17a0
-
 const config = {
   apiKey: process.env.REACT_APP_API_KEY,
   authDomain: process.env.REACT_APP_AUTH_DOMAIN,
