@@ -6,32 +6,25 @@ class HomePage extends Component {
 
   state = {
     loading: false,
-    users: [],
+    users: {},
   };
 
   componentDidMount() {
-
 
     this.setState({loading: true});
 
     this.props.firebase.users().on('value', snapshot => {
       const usersObject = snapshot.val();
 
-      const usersList = Object.keys(usersObject).map(key => ({
-        ...usersObject[key],
-        uid: key,
-      }));
-
-      console.log('userList', usersList);
+      const usersList = Object.keys(usersObject).filter((key) => {
+        return key === this.props.authUser.uid;
+      }).map(key => ({...usersObject[key], uid: key}));
 
       this.setState({
-        users: usersList,
+        users: usersList[0],
         loading: false,
       });
     });
-
-    console.log(this.props.authUser.email);
-    console.log(this.props.authUser.uid);
   }
 
   componentWillUnmount() {
@@ -44,7 +37,7 @@ class HomePage extends Component {
         <h2>Welcome to Home page</h2>
         <h2>(for authorized users only)</h2>
         <br/>
-        <h3>All people registered on this page:</h3>
+        <h3>Your data:</h3>
         {this.state.loading && <h2>Loading...</h2>}
         <UserList users={this.state.users}/>
       </div>
@@ -53,18 +46,15 @@ class HomePage extends Component {
 }
 
 const UserList = ({users}) => (
-  <ul>
-    {users.map(user => (
-      <li key={user.uid}>
-        <span>
-          <strong>Username:</strong> {user.username}
-        </span>
-        {/*<span>*/}
-          {/*<strong>E-Mail:</strong> {user.email}*/}
-        {/*</span>*/}
-      </li>
-    ))}
-  </ul>
+  <div>
+    <span>
+      <strong>Username: </strong> {users.username}
+    </span>
+    <br/>
+    <span>
+      <strong>E-Mail: </strong> {users.email}
+    </span>
+  </div>
 );
 
 const condition = (authUser) => !!authUser;
